@@ -1,3 +1,6 @@
 *.csv
 *.env
-/semlib
+/env
+/data
+/sandbox
+/__pycache__
