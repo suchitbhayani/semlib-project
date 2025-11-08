@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from etl import *
 from dialogue_etl import *
 from abstract_etl import *
 import asyncio
