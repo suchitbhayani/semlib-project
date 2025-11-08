@@ -38,9 +38,9 @@ EMAIL=your_email_here
 ---
 
 ## File organization
-`abstract` directory has code and parameter configurations for the research abstract review data approach. You can configure parameters in `abstract/abstract_params.json`.
+`abstract` directory has code and parameter configurations for the research abstract data approach. You can configure parameters in `abstract/abstract_params.json`.
 
-`dialogue` directory has code and parameter configurations for the patient-doctor conversation data approach. There are currently no parameters to configure.
+`dialogue` directory has code for the patient-doctor conversation data approach. There are currently no parameters to configure for this approach.
 
 ---
 
