@@ -1,8 +1,9 @@
 #!/usr/bin/env python
-from dialogue_etl import *
-from abstract_etl import *
+from dialogue.dialogue_etl import *
+from abstract.abstract_etl import *
 import asyncio
 import sys
+import json
 
 async def dialogue_approach(targets):
     '''
@@ -27,12 +28,15 @@ async def abstracts_approach(targets):
     '''
     Main logic to handle research abstract searching for drug repurposing approach.
     '''
+    with open('abstract/abstract_params.json') as fh:
+        data_params = json.load(fh)
+
     if 'download_abstracts' in targets:
-        download_abstracts()
+        download_abstracts(**data_params)
 
     all_subargs = ['repurposing']
     if any(arg in targets for arg in all_subargs):
-        abstracts = load_abstracts()
+        abstracts = load_abstracts(**data_params)
 
     # later on do something with this
     if 'repurposing' in targets:

@@ -13,14 +13,15 @@ MAX_CONCURRENCY = 5
 os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 session = Session(model="openai/gpt-4.1-mini", max_concurrency=MAX_CONCURRENCY)
 
-def download_abstracts():
+def download_abstracts(disease='Alzheimer', min_year='2022', max_year='2025', **kwargs):
     '''
-    Downloads the research papers. Saves data in data/PubMed_Conversations.csv.
+    Downloads the research paper abstracts with `disease` in the title/abstract and published from `min_year`-`max_year. 
+    Saves data in data/PubMed_abstracts.csv.
     '''
     Entrez.email = os.getenv("EMAIL")
 
     # Define your PubMed query
-    query = '"drug repurposing"[Title/Abstract] AND "Alzheimer"[Title/Abstract] AND ("2022"[Date - Publication] : "2025"[Date - Publication])'
+    query = f'"drug repurposing"[Title/Abstract] AND "{disease}"[Title/Abstract] AND ("{min_year}"[Date - Publication] : "{max_year}"[Date - Publication])'
 
     search_results = Entrez.read(
         Entrez.esearch(
@@ -31,7 +32,7 @@ def download_abstracts():
     )
     count = int(search_results["Count"])
 
-    save_path = os.path.join("data", "PubMed_Conversations.csv")
+    save_path = os.path.join("data", "PubMed_abstracts.csv")
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
     header = ["pmid", "title", "abstract"]
@@ -67,25 +68,25 @@ def download_abstracts():
                 
                 writer.writerow([pmid, title, abstract])
 
-    print(f"File downloaded and saved to {save_path}")
+    print(f"File downloaded and saved to {save_path}.\nDownloaded abstracts with `{disease}` in the title/abstract published from `{min_year}` to `{max_year}`\n")
 
-def load_abstracts():
+def load_abstracts(disease='Alzheimer', min_year='2022', max_year='2025', **kwargs):
     '''
     Returns structured list of abstracts. 
-    Must have data/PubMed_Conversations.csv. Run `python run.py download_abstracts` if you don't
+    Must have data/PubMed_abstracts.csv. Run `python run.py download_abstracts` if you don't
     '''
-    path = "data/PubMed_Conversations.csv"
+    path = "data/PubMed_abstracts.csv"
     if not os.path.exists(path):
         raise FileNotFoundError(
-            "Must have data/PubMed_Conversations.csv first. Run `python run.py download_abstracts`"
+            "Must have data/PubMed_abstracts.csv first. Run `python run.py download_abstracts`"
         )
     
-    with open("data/PubMed_Conversations.csv", encoding="latin-1") as f_in:
+    with open("data/PubMed_abstracts.csv", encoding="latin-1") as f_in:
         csv_file = csv.reader(f_in)
         header = next(csv_file)
         abstracts = [dict(zip(header, row, strict=False)) for row in csv_file]
 
-    print(f"Loaded {len(abstracts)} abstracts\n")
+    print(f"Loaded {len(abstracts)} abstracts searching for `{disease} in the title from `f{min_year}` to `{max_year}`\n")
     return abstracts
 
 async def extract_candidates(abstracts):

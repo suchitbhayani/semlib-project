@@ -36,6 +36,14 @@ EMAIL=your_email_here
 ```
 
 ---
+
+## File organization
+`abstract` directory has code and parameter configurations for the research abstract review data approach. You can configure parameters in `abstract/abstract_params.json`.
+
+`dialogue` directory has code and parameter configurations for the patient-doctor conversation data approach. There are currently no parameters to configure.
+
+---
+
 ## Usage 
 
 Run the main script with **targets** to specify what to download and process.
@@ -58,7 +66,7 @@ Run these by running `py run.py [any combination of targets]`
 
 1. **Downloads dialogues data:**
 ```bash
-python run.py dialogue
+python run.py download_dialogue
 ```
 
 2. **Extracts patient reasons for visits, family illnesses, and symptoms from patient-doctor dialogue data:**
@@ -67,7 +75,7 @@ python run.py reasons illnesses symptoms
 ```
 When passing do not have to pass all three of `reasons`, `illnesses` and `symptoms`. Can choose to pass as many or as little as you want.
 
-3. **Downloads research paper abstract data:**
+3. **Downloads research paper abstract data. Can configure parameters at `abstract/abstract_params.json`:**
 ```bash
 python run.py download_abstracts
 ```
