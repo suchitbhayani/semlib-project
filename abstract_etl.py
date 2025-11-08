@@ -72,20 +72,21 @@ def download_abstracts():
 def load_abstracts():
     '''
     Returns structured list of abstracts. 
-    Must have data/PubMed_Conversations.csv. Run download_abstracts() if you don't.
+    Must have data/PubMed_Conversations.csv. Run `python run.py download_abstracts` if you don't
     '''
-    try:
-        with open("data/PubMed_Conversations.csv", encoding="latin-1") as f_in:
-            csv_file = csv.reader(f_in)
-            header = next(csv_file)
-            abstracts = [dict(zip(header, row, strict=False)) for row in csv_file]
+    path = "data/PubMed_Conversations.csv"
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            "Must have data/PubMed_Conversations.csv first. Run `python run.py download_abstracts`"
+        )
+    
+    with open("data/PubMed_Conversations.csv", encoding="latin-1") as f_in:
+        csv_file = csv.reader(f_in)
+        header = next(csv_file)
+        abstracts = [dict(zip(header, row, strict=False)) for row in csv_file]
 
-        print(f"Loaded {len(abstracts)} abstracts\n")
-        return abstracts
-
-    except FileNotFoundError:
-        print("Must have data/PubMed_Conversations.csv. Run download_abstracts() if you don't.")
-        return []
+    print(f"Loaded {len(abstracts)} abstracts\n")
+    return abstracts
 
 async def extract_candidates(abstracts):
     extracted_candidates = await session.map(

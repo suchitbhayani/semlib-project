@@ -34,20 +34,22 @@ def download_dialogue():
 def load_dialogue():
     '''
     Returns structured list of conversations.
-    Must have data/MTS-Dialog-TrainingSet.csv first. Run download_dialogue() if you don't.
+    Must have data/MTS-Dialog-TrainingSet.csv first. Run `python run.py download_dialogue` if you don't.
     '''
-    try:
-        with open("data/MTS-Dialog-TrainingSet.csv", encoding="latin-1") as f_in:
-            csv_file = csv.reader(f_in)
-            header = next(csv_file)
-            convos = [dict(zip(header, row, strict=False)) for row in csv_file]
+    path = "data/MTS-Dialog-TrainingSet.csv"
+    if not os.path.exists(path):
+        raise FileNotFoundError(
+            "Must have data/MTS-Dialog-TrainingSet.csv first. Run `python run.py download_dialogue`"
+        )
+    
+    with open("data/MTS-Dialog-TrainingSet.csv", encoding="latin-1") as f_in:
+        csv_file = csv.reader(f_in)
+        header = next(csv_file)
+        convos = [dict(zip(header, row, strict=False)) for row in csv_file]
 
-        print(f"Loaded {len(convos)} conversations\n")
-        return convos
+    print(f"Loaded {len(convos)} conversations\n")
+    return convos
 
-    except FileNotFoundError:
-        print("Must have data/MTS-Dialog-TrainingSet.csv first. Run download_dialogue() if you don't.")
-        return []
 
 async def extract_reasons(convos):
     '''

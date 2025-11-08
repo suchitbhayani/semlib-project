@@ -43,28 +43,36 @@ Run the main script with **targets** to specify what to download and process.
 ### Targets
 
 Approach 1:
-- **`dialogue`** – Downloads the patient-doctor dialogue CSV and loads conversations.  
-- **`reasons`** – Extracts visit reasons from dialogue data (**requires `python run.py dialogue` to have been run before to load data**).  
-- **`illnesses`** – Extracts family illnesses from dialogue data (**requires `python run.py dialogue` to have been run before to load data**).  
-- **`symptoms`** – Extracts symptoms from dialogue data (**requires `python run.py dialogue` to have been run before to load data**).
+- **`download_dialogue`** – Downloads the patient-doctor dialogue CSV.  
+- **`reasons`** – Extracts visit reasons from dialogue data (**requires `python run.py download_dialogue` to have been run before to download data**).  
+- **`illnesses`** – Extracts family illnesses from dialogue data (**requires `python run.py download_dialogue` to have been run before to download data**).  
+- **`symptoms`** – Extracts symptoms from dialogue data (**requires `python run.py download_dialogue` to have been run before to load downdata**).
 
 Approach 2:
-- **`abstracts`** – Downloads abstracts CSV and extracts drug repurposing candidates.  
+- **`download_abstracts`** – Downloads drug repurposing candidate CSV.  
+- **`repurposing`** – Extracts drug repurposing candidates data (**requires `python run.py download_abstracts` to have been run before to download data**).  
+
+Run these by running `py run.py [any combination of targets]`
 
 ### Examples
 
-1. **Download and process dialogues only:**
+1. **Downloads dialogues data:**
 ```bash
 python run.py dialogue
 ```
 
-2. **Extracts patient reasons for visits, family illnesses, and symptoms:**
+2. **Extracts patient reasons for visits, family illnesses, and symptoms from patient-doctor dialogue data:**
 ```bash
 python run.py reasons illnesses symptoms
 ```
-When passing do not have to pass all three of `reasons`, `illnesses` and `symptoms`. Can choose to pass as many or as little as you want/need.
+When passing do not have to pass all three of `reasons`, `illnesses` and `symptoms`. Can choose to pass as many or as little as you want.
 
-3. **Download abstracts and extract repurposing candidates:**
+3. **Downloads research paper abstract data:**
 ```bash
-python run.py abstracts
+python run.py download_abstracts
+```
+
+4. **Extracts drug repurposing candidate data from research paper abstract data:**
+```bash
+python run.py repurposing
 ```
