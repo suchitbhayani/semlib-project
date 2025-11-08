@@ -8,7 +8,7 @@ This project provides scripts to **download and process patient-doctor dialogue 
 
 1. **Clone the repository**:  
 ```bash
-git clone git clone https://github.com/suchitbhayani/AI-drug-discovery.git
+git clone https://github.com/suchitbhayani/AI-drug-discovery.git
 cd YOUR_REPO
 ```
 
