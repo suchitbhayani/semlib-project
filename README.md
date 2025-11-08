@@ -58,11 +58,11 @@ Approach 2:
 python run.py dialogue
 ```
 
-2. **Download and process dialogues, and extract patient reasons for visits :**
+2. **Download and process dialogues, and extract patient reasons for visits, family illnesses, and symptoms:**
 ```bash
-python run.py dialogue reasons
+python run.py dialogue reasons illnesses symptoms
 ```
-When passing `dialogue`, can also pass `illnesses` and/or `symptoms` to extract family illnesses/symptoms from the dialogue csv data.
+When passing do not have to pass all three of `reasons`, `illnesses` and `symptoms`. Can choose to pass as many or as little as you want.
 
 3. **Download abstracts and extract repurposing candidates:**
 ```bash
