@@ -44,9 +44,9 @@ Run the main script with **targets** to specify what to download and process.
 
 Approach 1:
 - **`dialogue`** – Downloads the patient-doctor dialogue CSV and loads conversations.  
-- **`reasons`** – Extracts visit reasons from dialogue data (**requires `dialogue`**).  
-- **`illnesses`** – Extracts family illnesses from dialogue data (**requires `dialogue`**).  
-- **`symptoms`** – Extracts symptoms from dialogue data (**requires `dialogue`**).
+- **`reasons`** – Extracts visit reasons from dialogue data (**requires `python run.py dialogue` to have been run before to load data**).  
+- **`illnesses`** – Extracts family illnesses from dialogue data (**requires `python run.py dialogue` to have been run before to load data**).  
+- **`symptoms`** – Extracts symptoms from dialogue data (**requires `python run.py dialogue` to have been run before to load data**).
 
 Approach 2:
 - **`abstracts`** – Downloads abstracts CSV and extracts drug repurposing candidates.  
@@ -58,11 +58,11 @@ Approach 2:
 python run.py dialogue
 ```
 
-2. **Download and process dialogues, and extract patient reasons for visits, family illnesses, and symptoms:**
+2. **Extracts patient reasons for visits, family illnesses, and symptoms:**
 ```bash
-python run.py dialogue reasons illnesses symptoms
+python run.py reasons illnesses symptoms
 ```
-When passing do not have to pass all three of `reasons`, `illnesses` and `symptoms`. Can choose to pass as many or as little as you want.
+When passing do not have to pass all three of `reasons`, `illnesses` and `symptoms`. Can choose to pass as many or as little as you want/need.
 
 3. **Download abstracts and extract repurposing candidates:**
 ```bash

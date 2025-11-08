@@ -9,13 +9,13 @@ async def main(targets):
         download_dialogue()
         convos = load_dialogue()
 
-        # later on do something with these results  
-        if 'reasons' in targets:
-            visit_reasons = await extract_reasons(convos)
-        if 'illnesses' in targets:
-            family_illnesses = await extract_reasons(convos)
-        if 'symptoms' in targets:
-            symptoms = await extract_symptoms(convos)
+    # later on do something with these results  
+    if 'reasons' in targets:
+        visit_reasons = await extract_reasons(convos)
+    if 'illnesses' in targets:
+        family_illnesses = await extract_reasons(convos)
+    if 'symptoms' in targets:
+        symptoms = await extract_symptoms(convos)
     
     if 'abstracts' in targets:
         download_abstracts()
