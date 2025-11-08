@@ -14,7 +14,7 @@ async def dialogue_approach(targets):
 
     all_subargs = ['reasons', 'illnesses', 'symptoms']
     if any(arg in targets for arg in all_subargs):
-        convos = load_dialogue()
+        convos = preprocess_dialogue()
 
     # later on do something with these results  
     if 'reasons' in targets:
@@ -30,13 +30,13 @@ async def abstracts_approach(targets):
     '''
     with open('abstract/abstract_params.json') as fh:
         data_params = json.load(fh)
-
+        
     if 'download_abstracts' in targets:
         download_abstracts(**data_params)
 
     all_subargs = ['repurposing']
     if any(arg in targets for arg in all_subargs):
-        abstracts = load_abstracts(**data_params)
+        abstracts = preprocess_abstracts(**data_params)
 
     # later on do something with this
     if 'repurposing' in targets:

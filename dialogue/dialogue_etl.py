@@ -31,7 +31,7 @@ def download_dialogue():
     else:
         print(f"Failed to download file. Status code: {response.status_code}")
 
-def load_dialogue():
+def preprocess_dialogue():
     '''
     Returns structured list of conversations.
     Must have data/MTS-Dialog-TrainingSet.csv first. Run `python run.py download_dialogue` if you don't.

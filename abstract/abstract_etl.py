@@ -70,7 +70,7 @@ def download_abstracts(disease='Alzheimer', min_year='2022', max_year='2025', **
 
     print(f"File downloaded and saved to {save_path}.\nDownloaded abstracts with `{disease}` in the title/abstract published from `{min_year}` to `{max_year}`\n")
 
-def load_abstracts(disease='Alzheimer', min_year='2022', max_year='2025', **kwargs):
+def preprocess_abstracts(disease='Alzheimer', min_year='2022', max_year='2025', **kwargs):
     '''
     Returns structured list of abstracts. 
     Must have data/PubMed_abstracts.csv. Run `python run.py download_abstracts` if you don't
